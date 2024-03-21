@@ -12,7 +12,7 @@ namespace MovieTheaterSystem
         public const string Login = "admin";                       //Nome começando em maiusculo por convenção (const)
         public const string Password = "admin"; 
 
-        public static void checkCredentials(string login, string password)
+        public static void CheckCredentials(string login, string password)
         {
             if(login != Login || password != Password)
             {

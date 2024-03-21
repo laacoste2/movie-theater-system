@@ -11,7 +11,7 @@ namespace MovieTheaterSystem
         private string name;
         private string genre;
         private string duration;
-        int[,] seats = new int[,]
+        public int[,] seats = new int[,]
         {
             { 001, 002, 003, 004, 005, 006, 007, 008, 009, 010 },
             { 011, 012, 013, 014, 015, 016, 017, 018, 019, 020 },
@@ -24,7 +24,8 @@ namespace MovieTheaterSystem
             { 081, 082, 083, 084, 085, 086, 087, 088, 089, 090 },
             { 091, 092, 093, 094, 095, 096, 097, 098, 099, 100 }
         };
-        
+
+        public bool isValidSeat = false;
 
         public string Name { get => name; set => name = value; }
         public string Genre { get => genre; set => genre = value; }
@@ -37,7 +38,7 @@ namespace MovieTheaterSystem
             this.duration = duration;
         }
 
-        public void printSeats()
+        public void PrintSeats()
         {
             for (int row = 0; row < 10; row++)
             {
@@ -48,6 +49,15 @@ namespace MovieTheaterSystem
                 Console.WriteLine();
             }
         }
-        
+
+
+        public override string ToString()
+        {
+            return "\n--------------------\n" +
+                   "Movie: " + name + "\n" +
+                   "Genre: " + genre + "\n" + 
+                   "Duration: " + duration + "\n" + 
+                   "--------------------\n";
+        }
     }
 }
