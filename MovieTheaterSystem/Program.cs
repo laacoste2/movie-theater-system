@@ -9,7 +9,9 @@ namespace MovieTheaterSystem
             List<Movie> movies = new List<Movie>();
 
             movies.Add(new Movie("Mickey", "Action", "01:30"));
-            movies.Add(new Movie("Barbie: The return of Darth Vader", "Drama", "02:00")); //Drama em inglês é Drama
+            movies.Add(new Movie("Barbie", "Drama", "02:00")); 
+            movies.Add(new Movie("Batman", "Action", "02:30"));
+
 
             Console.WriteLine("Your login: ");
             string login = Console.ReadLine();
@@ -19,11 +21,9 @@ namespace MovieTheaterSystem
 
             Credentials.CheckCredentials(login, password);
 
-            Console.Write("Choose the Movie that you want by typing its name:\n");
-            foreach (Movie movie in movies)
-            {
-                Console.WriteLine(movie.ToString());
-            }
+            Console.WriteLine("Choose the Movie that you want by typing its name\n");
+            Console.WriteLine("Movies availabe today: \n");
+            Movie.PrintMovies(movies, HoursToChoose.fourPM);
 
             string movieChoose = Console.ReadLine();
 
@@ -34,38 +34,17 @@ namespace MovieTheaterSystem
                     if (movie.Name ==  movieChoose)
                     {
                         Console.Clear();
-                        Console.WriteLine("Chosen moovie: " + movie.Name + "\n");
+                        Console.WriteLine("Chosen Movie: " + movie.Name + "\n");
+
                         Console.WriteLine("[B]uy Ticket");
                         string buyTicket = Console.ReadLine();
+
                         if(buyTicket == "B")
                         {
                             Console.Clear();
+
                             Console.WriteLine("Choose a seat:\n");
-
-                            while (movie.isValidSeat == false)
-                            {
-                                movie.PrintSeats();
-                                int chosenSeat = int.Parse(Console.ReadLine());
-                                for (int i = 0; i < movie.seats.GetLength(0); i++)
-                                {
-                                    for (int j = 0; j < movie.seats.GetLength(1); j++)
-                                    {
-                                        if (movie.seats[i, j] == chosenSeat)
-                                        {
-                                            movie.isValidSeat = true;
-                                            break;
-                                        }
-                                    }
-
-                                    if (movie.isValidSeat)
-                                        Console.WriteLine("\n The seat " + chosenSeat + " has been chosen");
-                                        break;
-                                }
-                            }
-
-                            if (movie.isValidSeat)
-                            {
-                            }
+                            Movie.ReturnChosenSeat(movie, false);
                         }
                         else
                         {

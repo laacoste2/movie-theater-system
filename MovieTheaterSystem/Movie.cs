@@ -26,6 +26,7 @@ namespace MovieTheaterSystem
         };
 
         public bool isValidSeat = false;
+        public DateTime time;
 
         public string Name { get => name; set => name = value; }
         public string Genre { get => genre; set => genre = value; }
@@ -50,6 +51,42 @@ namespace MovieTheaterSystem
             }
         }
 
+        public static void ReturnChosenSeat(Movie movie, bool isValidSeat)
+        {
+            while (isValidSeat == false)
+            {
+                movie.PrintSeats();
+                Console.WriteLine();
+                int chosenSeat = int.Parse(Console.ReadLine());
+                for (int i = 0; i < movie.seats.GetLength(0); i++)
+                {
+                    for (int j = 0; j < movie.seats.GetLength(1); j++)
+                    {
+                        if (movie.seats[i, j] == chosenSeat)
+                        {
+                            isValidSeat = true;
+                            break;
+                        }
+
+
+                    }
+
+                    if (isValidSeat)
+                    {
+                        Console.WriteLine("\n The seat " + chosenSeat + " has been chosen");
+                        break;
+                    }
+                }
+            }
+        }
+        
+        public static void PrintMovies(List<Movie> movies, DateTime time)
+        {
+            foreach (Movie movie in movies)
+            {
+                Console.WriteLine(time + movie.ToString());
+            }
+        }
 
         public override string ToString()
         {
