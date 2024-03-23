@@ -6,11 +6,12 @@ namespace MovieTheaterSystem
     {
         static void Main(string[] args)
         {
+            //Movie testMovie = new Movie();
             List<Movie> movies = new List<Movie>();
 
-            movies.Add(new Movie("Mickey", "Action", "01:30"));
-            movies.Add(new Movie("Barbie", "Drama", "02:00")); 
-            movies.Add(new Movie("Batman", "Action", "02:30"));
+            movies.Add(new Movie("Mickey", "Action", "01:30", HoursToChoose.fivePM));
+            movies.Add(new Movie("Barbie", "Drama", "02:00", HoursToChoose.elevenPM)); 
+            movies.Add(new Movie("Batman", "Action", "02:30", HoursToChoose.fourPM));
 
 
             Console.WriteLine("Your login: ");
@@ -23,7 +24,7 @@ namespace MovieTheaterSystem
 
             Console.WriteLine("Choose the Movie that you want by typing its name\n");
             Console.WriteLine("Movies availabe today: \n");
-            Movie.PrintMovies(movies, HoursToChoose.fourPM);
+            Movie.PrintMovies(movies);
 
             string movieChoose = Console.ReadLine();
 

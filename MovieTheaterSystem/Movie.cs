@@ -11,6 +11,7 @@ namespace MovieTheaterSystem
         private string name;
         private string genre;
         private string duration;
+        public string hourString;
         public int[,] seats = new int[,]
         {
             { 001, 002, 003, 004, 005, 006, 007, 008, 009, 010 },
@@ -26,18 +27,20 @@ namespace MovieTheaterSystem
         };
 
         public bool isValidSeat = false;
-        public DateTime time;
 
         public string Name { get => name; set => name = value; }
         public string Genre { get => genre; set => genre = value; }
         public string Duration { get => duration; set => duration = value; }
 
-        public Movie(string name, string genre, string duration) 
+        public Movie(string name, string genre, string duration, DateTime time) 
         {
             this.name = name;
             this.genre = genre;
             this.duration = duration;
+            hourString = time.ToString("HH:mm");
         }
+
+        public Movie() {}
 
         public void PrintSeats()
         {
@@ -80,11 +83,11 @@ namespace MovieTheaterSystem
             }
         }
         
-        public static void PrintMovies(List<Movie> movies, DateTime time)
+        public static void PrintMovies(List<Movie> movies)
         {
             foreach (Movie movie in movies)
             {
-                Console.WriteLine(time + movie.ToString());
+                Console.WriteLine(movie.hourString + "\n" + movie.ToString());
             }
         }
 
