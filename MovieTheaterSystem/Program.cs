@@ -18,63 +18,104 @@ namespace MovieTheaterSystem
             Console.WriteLine("Your password: ");
             string password = Console.ReadLine();
 
-            Credentials.CheckCredentials(login, password);
-            if (Credentials.isAdmin == true)
+            UserAdmin.CheckCredentials(login, password);
+            if (UserAdmin.isAdmin == true)
             {
                 Console.WriteLine("You entered on Admin Mode \n");
-                Console.WriteLine("Now you can add and remove Movies from the list:");
-                Console.WriteLine("To [A]dd | To [R]emove");
-                string addOrRemove = Console.ReadLine();
+                Console.WriteLine("Now you can do some things with the Movies from the list:");
+                int x = 1;
 
-                if (addOrRemove == "A")
+                while(x == 1)
                 {
-                    Console.Clear();
+                    Console.WriteLine("To [A]dd | To [R]emove | To [U]pdate | To [S]ee");
+                    string addOrRemove = Console.ReadLine();
 
-                    Console.WriteLine("You choosen to add a Movie\n");
+                    if (addOrRemove == "A")
+                    {
+                        UserAdmin.AddMovie(movies);
+                        Console.Clear();
 
-                    Console.WriteLine("Type the name: ");
-                    string name = Console.ReadLine();
+                        Console.WriteLine("Type 1 to return to the options | Type 2 to proceed on the user system");
+                        int returnOrProceed = int.Parse(Console.ReadLine());
 
-                    Console.WriteLine("Type the genre: ");
-                    string genre = Console.ReadLine();
+                        if(returnOrProceed == 1)
+                        {
+                            x = 1;
+                        }
+                        else if(returnOrProceed == 2)
+                        {
+                            x = 0;
+                        }
+                    }
+                    else if (addOrRemove == "R")
+                    {
+                        UserAdmin.RemoveMovie(movies);
+                        Console.Clear();
 
-                    Console.WriteLine("Type the duration: ");
-                    string duration = Console.ReadLine();
+                        Console.WriteLine("Type 1 to return to the options | Type 2 to proceed on the user system");
+                        int returnOrProceed = int.Parse(Console.ReadLine());
 
-                    Console.WriteLine("Type the hour that the movie will show ");
-                    Console.WriteLine("Available Hours (PM): Three, Four, Five, Six, Seven, Eight, Nine, Ten, Eleven, Midnight");
-                    string hour = Console.ReadLine();
+                        if (returnOrProceed == 1)
+                        {
+                            x = 1;
+                        }
+                        else if (returnOrProceed == 2)
+                        {
+                            x = 0;
+                        }
+                    }
+                    else if (addOrRemove == "U")
+                    {
+                        UserAdmin.UpdateMovie(movies);
+                        Console.Clear();
 
-                    DateTime hourObject = HoursToChoose.chooseHour(hour);
+                        Console.WriteLine("Type 1 to return to the options | Type 2 to proceed on the user system");
+                        int returnOrProceed = int.Parse(Console.ReadLine());
 
-                    movies.Add(new Movie(name, genre, duration, hourObject));
-                } 
-                else if(addOrRemove == "R")
-                {
-                    Console.Clear();
+                        if (returnOrProceed == 1)
+                        {
+                            Console.Clear();
+                            x = 1;
+                        }
+                        else if (returnOrProceed == 2)
+                        {
+                            Console.Clear();
+                            x = 0;
+                        }
+                    }
+                    else if (addOrRemove == "S")
+                    {
+                        UserAdmin.SeeMovies(movies);
+                        Console.ReadLine();
+                        Console.Clear();
 
-                    Console.WriteLine("You chosen to remove a Movie\n");
+                        Console.WriteLine("Type 1 to return to the options | Type 2 to proceed on the user system");
+                        int returnOrProceed = int.Parse(Console.ReadLine());
 
-                    Console.WriteLine("Type the name: ");
-                    string movieToRemove = Console.ReadLine();
-
-                    movies.RemoveAll(m => m.Name == movieToRemove);
+                        if (returnOrProceed == 1)
+                        {
+                            x = 1;
+                        }
+                        else if (returnOrProceed == 2)
+                        {
+                            x = 0;
+                        }
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Invalid Option");
+                    }
                 }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("Invalid Option");
-                }
+                
 
             }
             else
             {
 
-            } 
-            
-            
-           
+            }
 
+            Console.Clear();
             Console.WriteLine("Choose the Movie that you want by typing its name\n");
             Console.WriteLine("Movies availabe today: \n");
             Movie.PrintMovies(movies);
