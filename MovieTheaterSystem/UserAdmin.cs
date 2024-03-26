@@ -109,11 +109,12 @@ namespace MovieTheaterSystem
                     string newHour = Console.ReadLine();
 
                     DateTime hourObject = HoursToChoose.chooseHour(newHour);
+                    
 
                     movie.Name = newName;
                     movie.Genre = newGenre;
                     movie.Duration = newDuration;
-                    movie.hourString = newHour;
+                    movie.hourString = hourObject.ToString("HH:mm");
                 }
             }
         }

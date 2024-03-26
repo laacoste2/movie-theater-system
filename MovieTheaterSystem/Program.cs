@@ -110,10 +110,7 @@ namespace MovieTheaterSystem
                 
 
             }
-            else
-            {
-
-            }
+            
 
             Console.Clear();
             Console.WriteLine("Choose the Movie that you want by typing its name\n");
